@@ -85,6 +85,44 @@
         </figure>
     </section>
 
-</body>
 
-</html>
+
+    
+        <script type="module">
+            
+            import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+
+            
+            const response = await fetch('newData.json');
+            const data = await response.json();
+
+            
+            console.log(data);
+
+            
+            const plot1 = Plot.dot(data, {
+                x: "YEAR",
+                y: "WINNER_PRIZE",
+                stroke: "TOURNAMENT"
+            }).plot();
+
+          
+            const div1 = document.querySelector("#graphique1");
+            div1.append(plot1);
+
+            
+            const plot2 = Plot.barY(data, {
+                x: "TOURNAMENT",
+                y: "WINNER_PRIZE",
+                fill: "WINNER_NATIONALITY"
+            }).plot();
+
+           
+            const div2 = document.querySelector("#graphique2");
+            div2.append(plot2);
+
+        </script>
+    
+    </body>
+    
+    </html>
