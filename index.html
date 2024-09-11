@@ -43,88 +43,84 @@
 
         #graphique1,
         #graphique2 {
-            height: 400px; 
-            width: 600px;  
+            height: 400px;
+            width: 600px;
             background-color: lightblue;
             margin: 20px 0;
-}
-
         }
     </style>
 </head>
 
 <body>
 
-
     <nav>
         <a href="#section1">Sous-partie 1</a>
         <a href="#section2">Sous-partie 2</a>
     </nav>
 
-    
     <section id="section1">
         <h2>Titre de la Sous-partie 1</h2>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem excepturi nihil, minus doloribus aliquam beatae necessitatibus voluptatem, porro vero accusantium non dolor voluptate adipisci aperiam ab laudantium? Nostrum, iste sit.</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem excepturi nihil, minus doloribus aliquam
+            beatae necessitatibus voluptatem, porro vero accusantium non dolor voluptate adipisci aperiam ab laudantium?
+            Nostrum, iste sit.</p>
 
-       
         <figure>
-            <div id="graphique1">
-            </div>
+            <div id="graphique1"></div>
             <figcaption>Image illustrant la première sous-partie.</figcaption>
         </figure>
     </section>
 
-   
     <section id="section2">
         <h2>Titre de la Sous-partie 2</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis earum at non voluptate magnam nemo itaque quam, doloribus eligendi consectetur eum sapiente veritatis saepe voluptas eaque iure alias nesciunt suscipit?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis earum at non voluptate magnam nemo itaque
+            quam, doloribus eligendi consectetur eum sapiente veritatis saepe voluptas eaque iure alias nesciunt
+            suscipit?</p>
 
         <figure>
-            <div id="graphique2">
-            
-            </div>
+            <div id="graphique2"></div>
             <figcaption>Image illustrant la deuxième sous-partie.</figcaption>
         </figure>
     </section>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
 
-    
-        <script type="module">
-            
-            import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+   
+    <script>
+        async function loadAndDrawPlots() {
+            try {
+                const response = await fetch('newData.json');
+                const data = await response.json();
+                console.log(data);
 
-            
-            const response = await fetch('newData.json');
-            const data = await response.json();
+                
+                const plot1 = Plot.dot(data, {
+                    x: "YEAR",
+                    y: "WINNER_PRIZE",
+                    stroke: "TOURNAMENT"
+                }).plot();
+                const div1 = document.querySelector("#graphique1");
+                div1.append(plot1);
 
-            
-            console.log(data);
+                
+                const plot2 = Plot.barY(data, {
+                    x: "TOURNAMENT",
+                    y: "WINNER_PRIZE",
+                    fill: "WINNER_NATIONALITY"
+                }).plot();
+                const div2 = document.querySelector("#graphique2");
+                div2.append(plot2);
 
-            
-            const plot1 = Plot.dot(data, {
-                x: "YEAR",
-                y: "WINNER_PRIZE",
-                stroke: "TOURNAMENT"
-            }).plot();
+            } catch (error) {
+                console.error('Error loading or drawing plots:', error);
+            }
+        }
 
-          
-            const div1 = document.querySelector("#graphique1");
-            div1.append(plot1);
+        
+        loadAndDrawPlots();
+    </script>
 
-            
-            const plot2 = Plot.barY(data, {
-                x: "TOURNAMENT",
-                y: "WINNER_PRIZE",
-                fill: "WINNER_NATIONALITY"
-            }).plot();
+</body>
 
-           
-            const div2 = document.querySelector("#graphique2");
-            div2.append(plot2);
-
-        </script>
-    
-    </body>
-    
-    </html>
+</html>
