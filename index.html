@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page avec deux sous-parties</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        figure {
+            margin: 20px 0;
+        }
+
+        figcaption {
+            text-align: center;
+            font-style: italic;
+        }
+
+        #graphique1,
+        #graphique2 {
+            height: 200px;
+            width: 300px;
+            background-color: lightblue;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <nav>
+        <a href="#section1">Sous-partie 1</a>
+        <a href="#section2">Sous-partie 2</a>
+    </nav>
+
+    
+    <section id="section1">
+        <h2>Titre de la Sous-partie 1</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem excepturi nihil, minus doloribus aliquam beatae necessitatibus voluptatem, porro vero accusantium non dolor voluptate adipisci aperiam ab laudantium? Nostrum, iste sit.</p>
+
+       
+        <figure>
+            <div id="graphique1">
+            </div>
+            <figcaption>Image illustrant la première sous-partie.</figcaption>
+        </figure>
+    </section>
+
+   
+    <section id="section2">
+        <h2>Titre de la Sous-partie 2</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis earum at non voluptate magnam nemo itaque quam, doloribus eligendi consectetur eum sapiente veritatis saepe voluptas eaque iure alias nesciunt suscipit?</p>
+
+        <figure>
+            <div id="graphique2">
+            
+            </div>
+            <figcaption>Image illustrant la deuxième sous-partie.</figcaption>
+        </figure>
+    </section>
+
+</body>
+
+</html>
